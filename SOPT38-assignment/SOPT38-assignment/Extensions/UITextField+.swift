@@ -25,4 +25,13 @@ extension UITextField {
         guard let string = self.placeholder else { return }
         attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor: color])
     }
+    
+    func addRightButton(_ button: UIButton, padding: CGFloat = 15) {
+        let containerWidth = button.frame.width + padding
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: containerWidth, height: button.frame.height))
+        container.addSubview(button)
+            
+        self.rightView = container
+        self.rightViewMode = .whileEditing
+    }
 }
