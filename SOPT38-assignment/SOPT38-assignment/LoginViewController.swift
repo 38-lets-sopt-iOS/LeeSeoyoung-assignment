@@ -38,8 +38,14 @@ class LoginViewController: UIViewController {
         textField.font = UIFont.Watcha.body2
         textField.textColor = UIColor.Watcha.white
         textField.setPlaceholderColor(UIColor.Watcha.gray300)
+        textField.tintColor = UIColor.Watcha.pink
+        
         textField.layer.cornerRadius = 10
         textField.addLeftPadding(15)
+        
+        textField.autocapitalizationType = .none
+        textField.spellCheckingType = .no
+        textField.autocorrectionType = .no
         return textField
     }()
     
@@ -47,9 +53,15 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(UIColor.Watcha.white, for: .normal)
-        button.backgroundColor = UIColor.Watcha.pink
         button.titleLabel?.font = UIFont.Watcha.medium
         button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    private let clearButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage.Watcha.closeSquare, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         return button
     }()
     
@@ -62,10 +74,19 @@ class LoginViewController: UIViewController {
     
     private func setUI() {
         [titleLabel, descriptionLabel, emailTextField, nextButton].forEach{self.view.addSubview($0)}
+        
+        emailTextField.addRightButton(clearButton, padding: 15)
+        clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
+        emailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        emailTextField.delegate = self
+        
+        nextButton.isEnabled = false
+        nextButton.backgroundColor = UIColor.Watcha.gray400
+        nextButton.setTitleColor(UIColor.Watcha.gray200, for: .disabled)
+        
     }
     
     private func setLayout() {
-        
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(152)
             $0.left.equalToSuperview().inset(30)
@@ -84,5 +105,31 @@ class LoginViewController: UIViewController {
             $0.left.right.equalToSuperview().inset(21)
             $0.height.equalTo(56)
         }
+    }
+    
+    @objc private func clearText() {
+        emailTextField.text = ""
+        emailTextField.resignFirstResponder()
+        nextButton.isEnabled = false
+        nextButton.backgroundColor = UIColor.Watcha.gray400
+        resignFirstResponder()
+    }
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        let isEmpty = textField.text?.isEmpty ?? true
+        nextButton.isEnabled = !isEmpty
+        nextButton.backgroundColor = isEmpty ? UIColor.Watcha.gray400 : UIColor.Watcha.pink
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.Watcha.gray200.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 0
     }
 }
