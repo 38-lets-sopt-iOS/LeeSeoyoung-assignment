@@ -34,4 +34,19 @@ extension UITextField {
         self.rightView = container
         self.rightViewMode = .whileEditing
     }
+    
+    func addRightButtons(_ buttons: [UIButton], padding: CGFloat) {
+        let stackView = UIStackView(arrangedSubviews: buttons)
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        stackView.alignment = .center
+            
+        let containerWidth = buttons.reduce(0) { $0 + $1.frame.width } + CGFloat(buttons.count - 1) * 4 + padding
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: containerWidth, height: 24))
+        stackView.frame = CGRect(x: 0, y: 0, width: containerWidth - padding, height: 24)
+        container.addSubview(stackView)
+        
+        rightView = container
+        rightViewMode = .whileEditing
+    }
 }
