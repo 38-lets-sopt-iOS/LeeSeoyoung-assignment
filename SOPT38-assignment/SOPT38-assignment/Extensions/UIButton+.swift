@@ -17,4 +17,13 @@ extension UIButton {
         )
         setAttributedTitle(attributedString, for: .normal)
     }
+    func setUnderlineTitle(_ title: String, font: UIFont, color: UIColor) {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: color,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        let attributed = NSAttributedString(string: title, attributes: attributes)
+        setAttributedTitle(attributed, for: .normal)
+    }
 }

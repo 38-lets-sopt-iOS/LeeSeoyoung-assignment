@@ -8,8 +8,15 @@
 import UIKit
 import SnapKit
 
-class PasswordViewController: UIViewController {
+class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
     
+    func setNickname(nickname: String) {
+        setNicknameButton.setUnderlineTitle(
+            nickname, font: UIFont.Watcha.body2, color: UIColor.Watcha.gray200
+        )
+    }
+    
+    private var userEmail: String?
     private var isPasswordVisible = false
     
     private let titleLabel: UILabel = {
@@ -90,6 +97,14 @@ class PasswordViewController: UIViewController {
         setLayout()
     }
     
+    func setLabelText(email: String?) {
+        self.userEmail = email
+        
+        if let email = email {
+            descriptionLabel.text = "\(email)로 가입 중"
+        }
+    }
+    
     private func setUI() {
         [titleLabel, descriptionLabel, pwTextField, signupButton, setNicknameButton].forEach{self.view.addSubview($0)}
         
@@ -154,6 +169,7 @@ class PasswordViewController: UIViewController {
     
     @objc private func showNicknameBottomSheet() {
         let bottomsheet = NicknameBottomSheetViewController()
+        bottomsheet.delegate = self
         
         if let sheet = bottomsheet.sheetPresentationController {
             sheet.detents = [.medium()]
@@ -169,6 +185,7 @@ class PasswordViewController: UIViewController {
     
     private func pushToWelcomeVC() {
         let welcomeVC = WelcomeViewController()
+        welcomeVC.setLabelText(nickname: setNicknameButton.titleLabel?.text)
         self.navigationController?.pushViewController(welcomeVC, animated: true)
     }
 }

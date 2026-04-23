@@ -128,6 +128,7 @@ class LoginViewController: UIViewController {
     
     private func pushToPasswordVC() {
         let passwordVC = PasswordViewController()
+        passwordVC.setLabelText(email: emailTextField.text)
         self.navigationController?.pushViewController(passwordVC, animated: true)
     }
 }

@@ -10,6 +10,8 @@ import SnapKit
 
 class WelcomeViewController: UIViewController {
     
+    private var nickname: String?
+    
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.Watcha.logo
@@ -42,6 +44,14 @@ class WelcomeViewController: UIViewController {
         self.view.backgroundColor = UIColor.Watcha.black
         setUI()
         setLayout()
+    }
+    
+    func setLabelText(nickname: String?) {
+        self.nickname = nickname
+        
+        if let nickname = nickname {
+            welcomeLabel.text = "\(nickname)님\n가입을 환영합니다!"
+        }
     }
     
     private func setUI() {

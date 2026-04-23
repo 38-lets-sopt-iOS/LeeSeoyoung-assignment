@@ -8,7 +8,15 @@
 import UIKit
 import SnapKit
 
+protocol SetNicknameDelegateProtocol: AnyObject {
+    func setNickname(nickname: String)
+}
+
 class NicknameBottomSheetViewController: UIViewController {
+    
+    weak var delegate: SetNicknameDelegateProtocol?
+    
+    private var nickname: String?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -46,6 +54,7 @@ class NicknameBottomSheetViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.Watcha.gray600
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -74,6 +83,18 @@ class NicknameBottomSheetViewController: UIViewController {
             $0.bottom.equalToSuperview().inset(47)
             $0.right.left.equalToSuperview().inset(22)
             $0.height.equalTo(56)
+        }
+    }
+    
+    @objc private func confirmButtonDidTap() {
+        if let nickname = nicknameTextField.text {
+            delegate?.setNickname(nickname: nickname)
+        }
+        
+        if self.navigationController == nil {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
