@@ -102,6 +102,7 @@ class PasswordViewController: UIViewController {
         signupButton.backgroundColor = UIColor.Watcha.gray400
         signupButton.setTitleColor(UIColor.Watcha.gray200, for: .disabled)
         
+        setNicknameButton.addTarget(self, action: #selector(showNicknameBottomSheet), for: .touchUpInside)
     }
     
     private func setLayout() {
@@ -148,6 +149,17 @@ class PasswordViewController: UIViewController {
         pwTextField.isSecureTextEntry = !isPasswordVisible
         let eyeImage = isPasswordVisible ? UIImage.Watcha.eyeOff : UIImage.Watcha.eyeOn
         eyeButton.setImage(eyeImage, for: .normal)
+    }
+    
+    @objc private func showNicknameBottomSheet() {
+        let bottomsheet = NicknameBottomSheetViewController()
+        
+        if let sheet = bottomsheet.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        
+        present(bottomsheet, animated: true)
     }
 }
 
