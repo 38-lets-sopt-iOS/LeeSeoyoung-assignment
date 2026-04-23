@@ -10,6 +10,8 @@ import SnapKit
 
 class PasswordViewController: UIViewController {
     
+    private var isPasswordVisible = false
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "사용할 비밀번호를\n입력해주세요"
@@ -25,7 +27,6 @@ class PasswordViewController: UIViewController {
         label.text = "???로 가입 중"
         label.textColor = UIColor.Watcha.gray100
         label.textAlignment = .left
-        label.numberOfLines = 1
         label.font = UIFont.Watcha.body1
         return label
     }()
@@ -65,11 +66,19 @@ class PasswordViewController: UIViewController {
         return button
     }()
     
+    private let eyeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage.Watcha.eyeOn, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        return button
+    }()
+    
     private let setNicknameButton: UIButton = {
         let button = UIButton()
         button.setTitle("닉네임 설정", for: .normal)
         button.titleLabel?.font = UIFont.Watcha.body2
         button.setTitleColor(UIColor.Watcha.gray200, for: .normal)
+        button.setUnderline()
         return button
     }()
     
@@ -83,8 +92,9 @@ class PasswordViewController: UIViewController {
     private func setUI() {
         [titleLabel, descriptionLabel, pwTextField, signupButton, setNicknameButton].forEach{self.view.addSubview($0)}
         
-        pwTextField.addRightButton(clearButton, padding: 15)
+        pwTextField.addRightButtons([clearButton, eyeButton], padding: 15)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
+        eyeButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         pwTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         pwTextField.delegate = self
         
@@ -131,6 +141,13 @@ class PasswordViewController: UIViewController {
         let isEmpty = textField.text?.isEmpty ?? true
         signupButton.isEnabled = !isEmpty
         signupButton.backgroundColor = isEmpty ? UIColor.Watcha.gray400 : UIColor.Watcha.pink
+    }
+    
+    @objc private func togglePasswordVisibility() {
+        isPasswordVisible.toggle()
+        pwTextField.isSecureTextEntry = !isPasswordVisible
+        let eyeImage = isPasswordVisible ? UIImage.Watcha.eyeOff : UIImage.Watcha.eyeOn
+        eyeButton.setImage(eyeImage, for: .normal)
     }
 }
 
