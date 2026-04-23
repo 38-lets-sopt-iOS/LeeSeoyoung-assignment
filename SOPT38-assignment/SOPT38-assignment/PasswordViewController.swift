@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
     
@@ -19,91 +20,73 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
     private var userEmail: String?
     private var isPasswordVisible = false
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "사용할 비밀번호를\n입력해주세요"
-        label.textColor = UIColor.Watcha.white
-        label.textAlignment = .left
-        label.numberOfLines = 2
-        label.font = UIFont.Watcha.head2
-        return label
-    }()
+    private let titleLabel = UILabel().then {
+        $0.text = "사용할 비밀번호를\n입력해주세요"
+        $0.textColor = UIColor.Watcha.white
+        $0.textAlignment = .left
+        $0.numberOfLines = 2
+        $0.font = UIFont.Watcha.head2
+    }
     
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "???로 가입 중"
-        label.textColor = UIColor.Watcha.gray100
-        label.textAlignment = .left
-        label.font = UIFont.Watcha.body1
-        return label
-    }()
+    private let descriptionLabel = UILabel().then {
+        $0.text = "???로 가입 중"
+        $0.textColor = UIColor.Watcha.gray100
+        $0.textAlignment = .left
+        $0.font = UIFont.Watcha.body1
+    }
     
-    private let pwTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = UIColor.Watcha.gray600
-        textField.placeholder = "비밀번호"
-        textField.font = UIFont.Watcha.body2
-        textField.textColor = UIColor.Watcha.white
-        textField.setPlaceholderColor(UIColor.Watcha.gray300)
-        textField.tintColor = UIColor.Watcha.pink
+    private let pwTextField = UITextField().then {
+        $0.backgroundColor = UIColor.Watcha.gray600
+        $0.placeholder = "비밀번호"
+        $0.font = UIFont.Watcha.body2
+        $0.textColor = UIColor.Watcha.white
+        $0.setPlaceholderColor(UIColor.Watcha.gray300)
+        $0.tintColor = UIColor.Watcha.pink
         
-        textField.layer.cornerRadius = 10
-        textField.addLeftPadding(15)
+        $0.layer.cornerRadius = 10
+        $0.addLeftPadding(15)
         
-        textField.autocapitalizationType = .none
-        textField.spellCheckingType = .no
-        textField.autocorrectionType = .no
-        textField.isSecureTextEntry = true
-        return textField
-    }()
+        $0.autocapitalizationType = .none
+        $0.spellCheckingType = .no
+        $0.autocorrectionType = .no
+        $0.isSecureTextEntry = true
+    }
     
-    private let signupButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("가입하기", for: .normal)
-        button.setTitleColor(UIColor.Watcha.white, for: .normal)
-        button.titleLabel?.font = UIFont.Watcha.medium
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(signupButtonDidTap), for: .touchUpInside)
-        return button
-    }()
+    private let signupButton = UIButton().then {
+        $0.setTitle("가입하기", for: .normal)
+        $0.setTitleColor(UIColor.Watcha.white, for: .normal)
+        $0.titleLabel?.font = UIFont.Watcha.medium
+        $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(signupButtonDidTap), for: .touchUpInside)
+    }
     
-    private let clearButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage.Watcha.closeSquare, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        return button
-    }()
+    private let clearButton = UIButton().then {
+        $0.setImage(UIImage.Watcha.closeSquare, for: .normal)
+        $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    }
     
-    private let eyeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage.Watcha.eyeOn, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        return button
-    }()
+    private let eyeButton = UIButton().then {
+        $0.setImage(UIImage.Watcha.eyeOn, for: .normal)
+        $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    }
     
-    private let setNicknameButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("닉네임 설정", for: .normal)
-        button.titleLabel?.font = UIFont.Watcha.body2
-        button.setTitleColor(UIColor.Watcha.gray200, for: .normal)
-        button.setUnderline()
-        return button
-    }()
+    private let setNicknameButton = UIButton().then {
+        $0.setTitle("닉네임 설정", for: .normal)
+        $0.titleLabel?.font = UIFont.Watcha.body2
+        $0.setTitleColor(UIColor.Watcha.gray200, for: .normal)
+        $0.setUnderline()
+    }
     
-    private let enableImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage.Watcha.enableOff
-        return imageView
-    }()
+    private let enableImageView = UIImageView().then {
+        $0.image = UIImage.Watcha.enableOff
+    }
     
-    private let enableLabel: UILabel = {
-        let label = UILabel()
-        label.text = "영문, 숫자, 특수문자 포함 10글자 이상"
-        label.textAlignment = .left
-        label.font = UIFont.Watcha.body2
-        label.textColor = UIColor.Watcha.gray100
-        return label
-    }()
+    private let enableLabel = UILabel().then {
+        $0.text = "영문, 숫자, 특수문자 포함 10글자 이상"
+        $0.textAlignment = .left
+        $0.font = UIFont.Watcha.body2
+        $0.textColor = UIColor.Watcha.gray100
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

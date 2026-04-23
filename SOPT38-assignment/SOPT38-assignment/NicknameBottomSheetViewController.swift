@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 protocol SetNicknameDelegateProtocol: AnyObject {
     func setNickname(nickname: String)
@@ -18,45 +19,39 @@ class NicknameBottomSheetViewController: UIViewController {
     
     private var nickname: String?
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "닉네임을 입력해주세요"
-        label.font = UIFont.Watcha.subhead1
-        label.textColor = UIColor.Watcha.white
-        label.textAlignment = .left
-        return label
-    }()
+    private let titleLabel = UILabel().then {
+        $0.text = "닉네임을 입력해주세요"
+        $0.font = UIFont.Watcha.subhead1
+        $0.textColor = UIColor.Watcha.white
+        $0.textAlignment = .left
+    }
     
-    private let nicknameTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = UIColor.Watcha.gray600
-        textField.font = UIFont.Watcha.body2
-        textField.textAlignment = .left
-        textField.placeholder = "닉네임을 입력하세요"
+    private let nicknameTextField = UITextField().then {
+        $0.backgroundColor = UIColor.Watcha.gray600
+        $0.font = UIFont.Watcha.body2
+        $0.textAlignment = .left
+        $0.placeholder = "닉네임을 입력하세요"
         
-        textField.textColor = UIColor.Watcha.white
-        textField.setPlaceholderColor(UIColor.Watcha.gray300)
-        textField.tintColor = UIColor.Watcha.pink
+        $0.textColor = UIColor.Watcha.white
+        $0.setPlaceholderColor(UIColor.Watcha.gray300)
+        $0.tintColor = UIColor.Watcha.pink
         
-        textField.layer.cornerRadius = 10
-        textField.addLeftPadding(15)
+        $0.layer.cornerRadius = 10
+        $0.addLeftPadding(15)
         
-        textField.autocapitalizationType = .none
-        textField.spellCheckingType = .no
-        textField.autocorrectionType = .no
-        return textField
-    }()
+        $0.autocapitalizationType = .none
+        $0.spellCheckingType = .no
+        $0.autocorrectionType = .no
+    }
     
-    private let confirmButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("완료", for: .normal)
-        button.titleLabel?.font = UIFont.Watcha.medium
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.Watcha.gray600
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
-        return button
-    }()
+    private let confirmButton = UIButton().then {
+        $0.setTitle("완료", for: .normal)
+        $0.titleLabel?.font = UIFont.Watcha.medium
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = UIColor.Watcha.gray600
+        $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

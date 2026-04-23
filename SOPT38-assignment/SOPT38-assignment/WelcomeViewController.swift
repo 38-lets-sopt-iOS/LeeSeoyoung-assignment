@@ -7,37 +7,32 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class WelcomeViewController: UIViewController {
     
     private var nickname: String?
     
-    private let logoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage.Watcha.logo
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private let logoImageView = UIImageView().then {
+        $0.image = UIImage.Watcha.logo
+        $0.contentMode = .scaleAspectFit
+    }
     
-    private let welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "??님\n가입을 환영합니다!"
-        label.font = UIFont.Watcha.head2
-        label.textColor = UIColor.Watcha.white
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        return label
-    }()
+    private let welcomeLabel = UILabel().then {
+        $0.text = "??님\n가입을 환영합니다!"
+        $0.font = UIFont.Watcha.head2
+        $0.textColor = UIColor.Watcha.white
+        $0.numberOfLines = 2
+        $0.textAlignment = .center
+    }
     
-    private let mainButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("메인으로", for: .normal)
-        button.setTitleColor(UIColor.Watcha.white, for: .normal)
-        button.titleLabel?.font = UIFont.Watcha.medium
-        button.layer.cornerRadius = 10
-        button.backgroundColor = UIColor.Watcha.pink
-        return button
-    }()
+    private let mainButton = UIButton().then {
+        $0.setTitle("메인으로", for: .normal)
+        $0.setTitleColor(UIColor.Watcha.white, for: .normal)
+        $0.titleLabel?.font = UIFont.Watcha.medium
+        $0.layer.cornerRadius = 10
+        $0.backgroundColor = UIColor.Watcha.pink
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,73 +7,62 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class LoginViewController: UIViewController {
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "로그인/가입하려는\n이메일을 입력해주세요"
-        label.textColor = UIColor.Watcha.white
-        label.textAlignment = .left
-        label.numberOfLines = 2
-        label.font = UIFont.Watcha.head2
-        return label
-    }()
+    private let titleLabel = UILabel().then {
+        $0.text = "로그인/가입하려는\n이메일을 입력해주세요"
+        $0.textColor = UIColor.Watcha.white
+        $0.textAlignment = .left
+        $0.numberOfLines = 2
+        $0.font = UIFont.Watcha.head2
+    }
     
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "결제 등 중요 정보 알림, 로그인, 비밀번호 찾기에 필요해요.\n사용 중인 이메일을 입력해주세요."
-        label.textColor = UIColor.Watcha.gray100
-        label.textAlignment = .left
-        label.numberOfLines = 2
-        label.font = UIFont.Watcha.body1
-        label.setLineHeight(5)
-        return label
-    }()
+    private let descriptionLabel = UILabel().then {
+        $0.text = "결제 등 중요 정보 알림, 로그인, 비밀번호 찾기에 필요해요.\n사용 중인 이메일을 입력해주세요."
+        $0.textColor = UIColor.Watcha.gray100
+        $0.textAlignment = .left
+        $0.numberOfLines = 2
+        $0.font = UIFont.Watcha.body1
+        $0.setLineHeight(5)
+    }
     
-    private let emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = UIColor.Watcha.gray600
-        textField.placeholder = "email@address.com"
-        textField.font = UIFont.Watcha.body2
-        textField.textColor = UIColor.Watcha.white
-        textField.setPlaceholderColor(UIColor.Watcha.gray300)
-        textField.tintColor = UIColor.Watcha.pink
+    private let emailTextField = UITextField().then {
+        $0.backgroundColor = UIColor.Watcha.gray600
+        $0.placeholder = "email@address.com"
+        $0.font = UIFont.Watcha.body2
+        $0.textColor = UIColor.Watcha.white
+        $0.setPlaceholderColor(UIColor.Watcha.gray300)
+        $0.tintColor = UIColor.Watcha.pink
         
-        textField.layer.cornerRadius = 10
-        textField.addLeftPadding(15)
+        $0.layer.cornerRadius = 10
+        $0.addLeftPadding(15)
         
-        textField.autocapitalizationType = .none
-        textField.spellCheckingType = .no
-        textField.autocorrectionType = .no
+        $0.autocapitalizationType = .none
+        $0.spellCheckingType = .no
+        $0.autocorrectionType = .no
         
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        return textField
-    }()
+        $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
     
-    private let nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("다음", for: .normal)
-        button.setTitleColor(UIColor.Watcha.white, for: .normal)
-        button.titleLabel?.font = UIFont.Watcha.medium
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
-        return button
-    }()
+    private let nextButton = UIButton().then {
+        $0.setTitle("다음", for: .normal)
+        $0.setTitleColor(UIColor.Watcha.white, for: .normal)
+        $0.titleLabel?.font = UIFont.Watcha.medium
+        $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
+    }
     
-    private let clearButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage.Watcha.closeSquare, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        return button
-    }()
+    private let clearButton = UIButton().then {
+        $0.setImage(UIImage.Watcha.closeSquare, for: .normal)
+        $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    }
     
-    private let checkButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage.Watcha.checkOff, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        return button
-    }()
+    private let checkButton = UIButton().then {
+        $0.setImage(UIImage.Watcha.checkOff, for: .normal)
+        $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
