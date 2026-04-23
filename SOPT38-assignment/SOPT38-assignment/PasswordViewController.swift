@@ -56,6 +56,7 @@ class PasswordViewController: UIViewController {
         button.setTitleColor(UIColor.Watcha.white, for: .normal)
         button.titleLabel?.font = UIFont.Watcha.medium
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(signupButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -160,6 +161,15 @@ class PasswordViewController: UIViewController {
         }
         
         present(bottomsheet, animated: true)
+    }
+    
+    @objc private func signupButtonDidTap() {
+        pushToWelcomeVC()
+    }
+    
+    private func pushToWelcomeVC() {
+        let welcomeVC = WelcomeViewController()
+        self.navigationController?.pushViewController(welcomeVC, animated: true)
     }
 }
 

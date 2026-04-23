@@ -55,6 +55,7 @@ class LoginViewController: UIViewController {
         button.setTitleColor(UIColor.Watcha.white, for: .normal)
         button.titleLabel?.font = UIFont.Watcha.medium
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -119,6 +120,15 @@ class LoginViewController: UIViewController {
         let isEmpty = textField.text?.isEmpty ?? true
         nextButton.isEnabled = !isEmpty
         nextButton.backgroundColor = isEmpty ? UIColor.Watcha.gray400 : UIColor.Watcha.pink
+    }
+    
+    @objc private func nextButtonDidTap() {
+        pushToPasswordVC()
+    }
+    
+    private func pushToPasswordVC() {
+        let passwordVC = PasswordViewController()
+        self.navigationController?.pushViewController(passwordVC, animated: true)
     }
 }
 
