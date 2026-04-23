@@ -90,6 +90,21 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
         return button
     }()
     
+    private let enableImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage.Watcha.enableOff
+        return imageView
+    }()
+    
+    private let enableLabel: UILabel = {
+        let label = UILabel()
+        label.text = "영문, 숫자, 특수문자 포함 10글자 이상"
+        label.textAlignment = .left
+        label.font = UIFont.Watcha.body2
+        label.textColor = UIColor.Watcha.gray100
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Watcha.black
@@ -106,7 +121,7 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
     }
     
     private func setUI() {
-        [titleLabel, descriptionLabel, pwTextField, signupButton, setNicknameButton].forEach{self.view.addSubview($0)}
+        [titleLabel, descriptionLabel, pwTextField, signupButton, setNicknameButton, enableImageView, enableLabel].forEach{self.view.addSubview($0)}
         
         pwTextField.addRightButtons([clearButton, eyeButton], padding: 15)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
@@ -140,9 +155,17 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
             $0.left.right.equalToSuperview().inset(21)
             $0.height.equalTo(56)
         }
-        setNicknameButton.snp.makeConstraints{
+        setNicknameButton.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.top.equalTo(pwTextField.snp.bottom).offset(67)
+        }
+        enableImageView.snp.makeConstraints {
+            $0.left.equalToSuperview().inset(35)
+            $0.top.equalTo(pwTextField.snp.bottom).offset(13)
+        }
+        enableLabel.snp.makeConstraints {
+            $0.top.equalTo(pwTextField.snp.bottom).offset(13)
+            $0.left.equalTo(enableImageView.snp.right).offset(8)
         }
     }
     
@@ -156,8 +179,16 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         let isEmpty = textField.text?.isEmpty ?? true
-        signupButton.isEnabled = !isEmpty
-        signupButton.backgroundColor = isEmpty ? UIColor.Watcha.gray400 : UIColor.Watcha.pink
+        signupButton.isEnabled = !isEmpty && isValid(pw: self.pwTextField.text)
+        if signupButton.isEnabled {
+            signupButton.backgroundColor = UIColor.Watcha.pink
+            enableImageView.image = UIImage.Watcha.enableOn
+            enableLabel.textColor = UIColor.Watcha.green
+        } else {
+            signupButton.backgroundColor = UIColor.Watcha.gray400
+            enableImageView.image = UIImage.Watcha.enableOff
+            enableLabel.textColor = UIColor.Watcha.gray100
+        }
     }
     
     @objc private func togglePasswordVisibility() {
@@ -187,6 +218,11 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
         let welcomeVC = WelcomeViewController()
         welcomeVC.setLabelText(nickname: setNicknameButton.titleLabel?.text)
         self.navigationController?.pushViewController(welcomeVC, animated: true)
+    }
+    
+    private func isValid(pw: String?) -> Bool {
+        let regExp = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{10,}$"
+        return NSPredicate(format: "SELF MATCHES %@", regExp).evaluate(with: pw)
     }
 }
 

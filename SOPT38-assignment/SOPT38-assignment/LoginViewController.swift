@@ -46,6 +46,8 @@ class LoginViewController: UIViewController {
         textField.autocapitalizationType = .none
         textField.spellCheckingType = .no
         textField.autocorrectionType = .no
+        
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -66,6 +68,13 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    private let checkButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage.Watcha.checkOff, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Watcha.black
@@ -76,7 +85,7 @@ class LoginViewController: UIViewController {
     private func setUI() {
         [titleLabel, descriptionLabel, emailTextField, nextButton].forEach{self.view.addSubview($0)}
         
-        emailTextField.addRightButton(clearButton, padding: 15)
+        emailTextField.addRightButtons([clearButton, checkButton], padding: 15)
         clearButton.addTarget(self, action: #selector(clearText), for: .touchUpInside)
         emailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         emailTextField.delegate = self
@@ -118,8 +127,15 @@ class LoginViewController: UIViewController {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         let isEmpty = textField.text?.isEmpty ?? true
-        nextButton.isEnabled = !isEmpty
-        nextButton.backgroundColor = isEmpty ? UIColor.Watcha.gray400 : UIColor.Watcha.pink
+        nextButton.isEnabled = !isEmpty && isValid(email: self.emailTextField.text)
+        
+        if nextButton.isEnabled {
+            nextButton.backgroundColor = UIColor.Watcha.pink
+            checkButton.setImage(UIImage.Watcha.checkOn, for: .normal)
+        } else {
+            nextButton.backgroundColor = UIColor.Watcha.gray400
+            checkButton.setImage(UIImage.Watcha.checkOff, for: .normal)
+        }
     }
     
     @objc private func nextButtonDidTap() {
@@ -130,6 +146,11 @@ class LoginViewController: UIViewController {
         let passwordVC = PasswordViewController()
         passwordVC.setLabelText(email: emailTextField.text)
         self.navigationController?.pushViewController(passwordVC, animated: true)
+    }
+    
+    private func isValid(email: String?) -> Bool {
+        let regExp = "^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$"
+        return NSPredicate(format: "SELF MATCHES %@", regExp).evaluate(with: email)
     }
 }
 
