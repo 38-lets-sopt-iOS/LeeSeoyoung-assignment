@@ -16,5 +16,6 @@ extension UIImage {
         static let enableOn = UIImage(named: "enable-on")
         static let eyeOff = UIImage(named: "eye-off")
         static let eyeOn = UIImage(named: "eye-on")
+        static let logo = UIImage(named: "WatchaLogo")
     }
 }
