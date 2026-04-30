@@ -56,7 +56,7 @@ class WelcomeViewController: UIViewController {
     
     private func setLayout() {
         logoImageView.snp.makeConstraints{
-            $0.left.right.equalToSuperview().inset(28)
+            $0.horizontalEdges.equalToSuperview().inset(28)
             $0.top.equalToSuperview().inset(85)
         }
         welcomeLabel.snp.makeConstraints{
@@ -65,7 +65,7 @@ class WelcomeViewController: UIViewController {
         }
         mainButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(47)
-            $0.left.right.equalToSuperview().inset(21)
+            $0.horizontalEdges.equalToSuperview().inset(21)
             $0.height.equalTo(56)
         }
     }

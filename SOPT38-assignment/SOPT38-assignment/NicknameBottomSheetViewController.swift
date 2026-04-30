@@ -67,16 +67,16 @@ class NicknameBottomSheetViewController: UIViewController {
     private func setLayout() {
         titleLabel.snp.makeConstraints{
             $0.top.equalToSuperview().inset(42)
-            $0.left.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(24)
         }
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(19)
-            $0.left.right.equalToSuperview().inset(31)
+            $0.horizontalEdges.equalToSuperview().inset(31)
             $0.height.equalTo(47)
         }
         confirmButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(47)
-            $0.right.left.equalToSuperview().inset(22)
+            $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
     }

@@ -122,20 +122,20 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
     private func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(152)
-            $0.left.equalToSuperview().inset(30)
+            $0.leading.equalToSuperview().inset(30)
         }
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(13)
-            $0.left.equalTo(titleLabel.snp.left)
+            $0.leading.equalTo(titleLabel.snp.leading)
         }
         pwTextField.snp.makeConstraints{
-            $0.left.right.equalToSuperview().inset(31)
+            $0.horizontalEdges.equalToSuperview().inset(31)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(30)
             $0.height.equalTo(47)
         }
         signupButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(47)
-            $0.left.right.equalToSuperview().inset(21)
+            $0.horizontalEdges.equalToSuperview().inset(21)
             $0.height.equalTo(56)
         }
         setNicknameButton.snp.makeConstraints {
@@ -143,12 +143,12 @@ class PasswordViewController: UIViewController, SetNicknameDelegateProtocol {
             $0.top.equalTo(pwTextField.snp.bottom).offset(67)
         }
         enableImageView.snp.makeConstraints {
-            $0.left.equalToSuperview().inset(35)
+            $0.leading.equalToSuperview().inset(35)
             $0.top.equalTo(pwTextField.snp.bottom).offset(13)
         }
         enableLabel.snp.makeConstraints {
             $0.top.equalTo(pwTextField.snp.bottom).offset(13)
-            $0.left.equalTo(enableImageView.snp.right).offset(8)
+            $0.leading.equalTo(enableImageView.snp.trailing).offset(8)
         }
     }
     

@@ -88,20 +88,20 @@ class LoginViewController: UIViewController {
     private func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(152)
-            $0.left.equalToSuperview().inset(30)
+            $0.leading.equalToSuperview().inset(30)
         }
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(13)
-            $0.left.equalTo(titleLabel.snp.left)
+            $0.leading.equalTo(titleLabel.snp.leading)
         }
         emailTextField.snp.makeConstraints{
-            $0.left.right.equalToSuperview().inset(31)
+            $0.horizontalEdges.equalToSuperview().inset(31)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(27)
             $0.height.equalTo(47)
         }
         nextButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(47)
-            $0.left.right.equalToSuperview().inset(21)
+            $0.horizontalEdges.equalToSuperview().inset(21)
             $0.height.equalTo(56)
         }
     }
