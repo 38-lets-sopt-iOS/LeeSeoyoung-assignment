@@ -32,6 +32,7 @@ class WelcomeViewController: UIViewController {
         $0.titleLabel?.font = UIFont.Watcha.medium
         $0.layer.cornerRadius = 10
         $0.backgroundColor = UIColor.Watcha.pink
+        $0.addTarget(self, action: #selector(mainButtonDidTap), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -68,5 +69,12 @@ class WelcomeViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(21)
             $0.height.equalTo(56)
         }
+    }
+    
+    @objc private func mainButtonDidTap() {
+        let mainVC = MainViewController()
+        
+        // navigation stack을 아예 교체
+        self.navigationController?.setViewControllers([mainVC], animated: true)
     }
 }
