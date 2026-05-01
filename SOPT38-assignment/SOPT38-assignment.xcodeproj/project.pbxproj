@@ -19,7 +19,7 @@
 		A381B08F2F98F90400E27B1F /* Exceptions for "SOPT38-assignment" folder in "SOPT38-assignment" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = A381B07C2F98F90300E27B1F /* SOPT38-assignment */;
 		};
