@@ -72,7 +72,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc private func mainButtonDidTap() {
-        let mainVC = MainViewController()
+        let mainVC = TabBarController()
         
         // navigation stack을 아예 교체
         self.navigationController?.setViewControllers([mainVC], animated: true)
