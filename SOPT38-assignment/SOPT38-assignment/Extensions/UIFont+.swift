@@ -38,7 +38,7 @@ extension UIFont {
         }
     }
     enum Watcha {
-        static let head1 = Pretendard.bold(size: 30)
+        static let head1 = Pretendard.semiBold(size: 30)
         static let head2 = Pretendard.semiBold(size: 23)
         static let head3 = Pretendard.semiBold(size: 20)
         static let subhead1 = Pretendard.semiBold(size: 18)
