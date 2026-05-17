@@ -37,6 +37,7 @@ class TabBarController: UITabBarController {
     private func makeNav(rootViewController: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.navigationBar.isHidden = true
+        nav.view.backgroundColor = .black
         return nav
     }
 }

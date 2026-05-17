@@ -15,7 +15,7 @@ class WatgorithmCollectionViewCell: UICollectionViewCell {
     static let identifier = "WatgorithmCollectionViewCell"
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         contentView.addSubview(posterImageView)
         posterImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()

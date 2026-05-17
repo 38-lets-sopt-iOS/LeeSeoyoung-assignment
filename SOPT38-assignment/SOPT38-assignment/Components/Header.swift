@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class Header: UIView {
+final class Header: UIView {
     
     private let titleLabel = UILabel().then {
         $0.text = "구독"

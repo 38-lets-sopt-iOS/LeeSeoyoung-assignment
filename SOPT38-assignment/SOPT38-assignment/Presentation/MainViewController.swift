@@ -51,7 +51,6 @@ class MainViewController: UIViewController {
     }
 
     private func setUI() {
-        view.backgroundColor = .black
         [header, collectionView].forEach { view.addSubview($0) }
         view.bringSubviewToFront(header)
     }

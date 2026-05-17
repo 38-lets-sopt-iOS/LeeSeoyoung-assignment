@@ -15,7 +15,7 @@ class WatchaPartyCollectionViewCell: UICollectionViewCell {
     static let identifier = "WatchaPartyCollectionViewCell"
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         setUI()
         setLayout()
     }
@@ -43,8 +43,8 @@ class WatchaPartyCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUI() {
-        self.backgroundColor = .gray600
-        [posterImageView, scheduleLabel, titleLabel, alarmButton].forEach { self.addSubview($0) }
+        contentView.backgroundColor = .gray600
+        [posterImageView, scheduleLabel, titleLabel, alarmButton].forEach { contentView.addSubview($0) }
     }
     
     private func setLayout() {

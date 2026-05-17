@@ -15,7 +15,7 @@ class ReleaseCollectionViewCell: UICollectionViewCell {
     static let identifier = "ReleaseCollectionViewCell"
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         contentView.addSubview(posterImageView)
         posterImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
