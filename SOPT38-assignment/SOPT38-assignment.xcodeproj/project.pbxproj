@@ -19,7 +19,7 @@
 		A381B08F2F98F90400E27B1F /* Exceptions for "SOPT38-assignment" folder in "SOPT38-assignment" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = A381B07C2F98F90300E27B1F /* SOPT38-assignment */;
 		};
@@ -160,7 +160,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4FWK4699L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SOPT38-assignment/Info.plist";
+				INFOPLIST_FILE = "SOPT38-assignment/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -191,7 +191,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B4FWK4699L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SOPT38-assignment/Info.plist";
+				INFOPLIST_FILE = "SOPT38-assignment/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
