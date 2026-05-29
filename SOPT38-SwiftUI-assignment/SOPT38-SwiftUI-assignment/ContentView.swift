@@ -33,7 +33,7 @@ struct ContentView: View {
             .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                Divider().background(Color.gray600)
+                Divider().background(.gray600)
                 HStack(spacing: 0) {
                     ForEach(tabs.indices, id: \.self) { index in
                         Button {
@@ -46,7 +46,7 @@ struct ContentView: View {
                                 Text(tabs[index].label)
                                     .font(.system(size: 12))
                             }
-                            .foregroundStyle(selectedTab == index ? Color.white : Color.gray500)
+                            .foregroundStyle(selectedTab == index ? .white : .gray500)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 3)
                         }
@@ -54,7 +54,7 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 34)
                 .padding(.top, 17)
-                .background(Color.black)
+                .background(.black)
             }
         }
         .ignoresSafeArea(edges: .bottom)
