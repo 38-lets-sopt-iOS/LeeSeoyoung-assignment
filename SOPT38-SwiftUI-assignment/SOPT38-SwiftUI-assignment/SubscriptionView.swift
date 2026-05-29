@@ -11,7 +11,10 @@ struct SubscriptionView: View {
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
-            Text("구독").foregroundStyle(.white)
+            VStack() {
+                HeaderView()
+                Spacer()
+            }
         }
     }
 }
