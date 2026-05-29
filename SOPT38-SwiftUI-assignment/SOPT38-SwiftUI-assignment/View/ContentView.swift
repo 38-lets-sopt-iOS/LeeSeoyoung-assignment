@@ -30,7 +30,6 @@ struct ContentView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .ignoresSafeArea()
 
             VStack(spacing: 0) {
                 Divider().background(.gray600)
