@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct SOPT38_SwiftUI_assignmentApp: App {
+    @State private var isLoggedIn = false
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                ContentView()
+            } else {
+                WelcomeView(isLoggedIn: $isLoggedIn)
+            }
         }
     }
 }
