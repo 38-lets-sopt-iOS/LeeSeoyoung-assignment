@@ -1,4 +1,5 @@
 <img width="1564" height="280" alt="ios_banner" src="https://github.com/user-attachments/assets/ab77620c-eb88-4880-9990-9ce42b99ba12" />
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/618834ef-0088-4059-89e5-8c4eb9a6945b" />
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/6b644952-613a-438b-8a78-ec7f08df7573" />
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/75e59e92-6d6b-4d0a-9382-2db6a83a9d30" />
+
+<img height="300" alt="58826022bea83fdfbccc458cb775409a" src="https://github.com/user-attachments/assets/a486a4a3-cc25-4bfe-85f1-a834af17cad1" />
+<img height="300" alt="97e2efc32103557efb9554fed408c8e0" src="https://github.com/user-attachments/assets/fde7117c-4d6c-4c21-b75b-e4b89e1de1a9" />
+<img height="300" alt="5380988ddb4cf6a87981acb629eb8397" src="https://github.com/user-attachments/assets/9e9381ae-26d9-4d09-9ad7-f86e2fa81e71" />
